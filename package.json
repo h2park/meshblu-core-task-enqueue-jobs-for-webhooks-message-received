@@ -1,6 +1,6 @@
 {
   "name": "meshblu-core-task-enqueue-jobs-for-webhooks-message-received",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Meshblu core task meshblu-core-task-enqueue-jobs-for-webhooks-message-received",
   "keywords": [
     "meshblu",
@@ -26,7 +26,7 @@
     "async": "^2.0.0-rc.3",
     "coffee-script": "^1.10.0",
     "lodash": "^4.6.1",
-    "meshblu-core-manager-webhook": "^1.0.0"
+    "meshblu-core-manager-webhook": "^2.0.0"
   },
   "devDependencies": {
     "@octoblu/redis-ns": "^1.2.2",
