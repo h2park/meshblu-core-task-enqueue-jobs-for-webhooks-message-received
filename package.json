@@ -1,6 +1,6 @@
 {
   "name": "meshblu-core-task-enqueue-jobs-for-webhooks-message-received",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Meshblu core task meshblu-core-task-enqueue-jobs-for-webhooks-message-received",
   "keywords": [
     "meshblu",
@@ -36,6 +36,7 @@
     "istanbul": "^0.4.3",
     "meshblu-core-datastore": "^2.4.0",
     "meshblu-core-job-manager": "^3.2.2",
+    "meshblu-core-manager-webhook": "^1.0.0",
     "mocha": "^2.4.5",
     "mocha-istanbul": "^0.2.0",
     "mongojs": "^2.3.0",
