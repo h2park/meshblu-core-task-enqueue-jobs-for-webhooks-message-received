@@ -1,10 +1,11 @@
-_          = require 'lodash'
 redis      = require 'fakeredis'
 Datastore  = require 'meshblu-core-datastore'
 JobManager = require 'meshblu-core-job-manager'
 mongojs    = require 'mongojs'
 RedisNS    = require '@octoblu/redis-ns'
 uuid       = require 'uuid'
+{beforeEach, context, describe, it} = global
+{expect} = require 'chai'
 EnqueueJobsForWebhooksMessageReceived = require '../'
 
 describe 'EnqueueJobsForWebhooksMessageReceived', ->
@@ -76,6 +77,7 @@ describe 'EnqueueJobsForWebhooksMessageReceived', ->
             metadata:
               auth: {uuid: 'subscriber'}
               route: [{type: 'message.received', from: 'subscriber', to: 'subscriber'}]
+              forwardedRoutes: []
               responseId: 'its-electric'
             rawData: '{}'
 
@@ -93,8 +95,8 @@ describe 'EnqueueJobsForWebhooksMessageReceived', ->
         it 'should enqueue a job to deliver the webhook', (done) ->
           @jobManager.getRequest ['request'], (error, request) =>
             return done error if error?
-            delete request?.metadata?.responseId
-            expect(request).to.deep.equal {
+
+            expect(request).to.containSubset {
               metadata:
                 jobType: 'DeliverWebhook'
                 auth:
@@ -103,6 +105,7 @@ describe 'EnqueueJobsForWebhooksMessageReceived', ->
                 toUuid: 'subscriber'
                 messageType: 'message.received'
                 route: [{type: "message.received", from: "subscriber", to: "subscriber"}]
+                forwardedRoutes: []
                 options:
                   type:   'webhook'
                   url:    'https://google.com'
